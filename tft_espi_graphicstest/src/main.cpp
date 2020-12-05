@@ -38,7 +38,7 @@ void setup()
   Serial.print(F("\n"));
   Serial.print(F("[INFO] YeaCreate Nscreen-32 tft_espi_graphicstest V "));
   Serial.println(VERSION);
-  Serial.print(F("[INFO] Project name: "));
+  Serial.print(F("[INFO] Device name: "));
   Serial.println((String)DEV_TYPE);
   Serial.print(F("========================================\n"));
   display.setup();
