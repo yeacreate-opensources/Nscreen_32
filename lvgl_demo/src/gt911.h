@@ -46,7 +46,7 @@ private:
         0xe0, //0x804A Y output Max(Low byte)
         0x01, //0x804B Y output Max(High byte)
         0x01, //0x804C Touch Number
-        0x35, //0x804D Module_switch1(Bit[0-1]:INT trigger,[2]:Software noise reduction,[3]:x/y exchange,[4-5]:reversal,[6]:x2x reversal,[7]:y2y reversal)
+        0xf5, //0x804D Module_switch1(Bit[0-1]:INT trigger,[2]:Software noise reduction,[3]:x/y exchange,[4-5]:reversal,[6]:x2x reversal,[7]:y2y reversal)
         0x00,
         0x01, //0x804F Shake_count
         0x08, 0x1e, 0x0f, 0x50, 0x32, 0x03, 0x05, 0x00, 0x00,0x00, 

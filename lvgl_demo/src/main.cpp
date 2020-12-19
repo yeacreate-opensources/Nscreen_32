@@ -20,7 +20,7 @@ TFT_D5   18
 TFT_D6   27
 TFT_D7   14
 --------------------------
-I2C TP:
+I2C TP:7
 SCL:D22[GPIO22]
 SDA:D21[GPIO21]
 INT:D5

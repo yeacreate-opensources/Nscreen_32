@@ -2,7 +2,7 @@
 #define _DEBUG_           //debug switch
 #define DEV_TYPE "Nscreen_32"
 #define LVGL_TICK_PERIOD 10 //lvgl tick period
-#define ROTATION 2          //set ui rotation
+#define ROTATION 0          //set ui rotation
 #define TOUCHPAD //whether the UI support touch pad
 // #define _TP_DEBUG_ //TP debug
 
