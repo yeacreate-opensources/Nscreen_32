@@ -1,11 +1,11 @@
 /*
- Adapted from the Adafruit graphicstest sketch, see orignal header at end
+ Adapted from the Adafruit graphicstest sketch, see original header at end
  of sketch.
 
  This sketch uses the GLCD font (font 1) only.
 
- Make sure all the display driver and pin comnenctions are correct by
- editting the User_Setup.h file in the TFT_eSPI library folder.
+ Make sure all the display driver and pin connections are correct by
+ editing the User_Setup.h file in the TFT_eSPI library folder.
 
  #########################################################################
  ###### DON'T FORGET TO UPDATE THE User_Setup.h FILE IN THE LIBRARY ######
@@ -21,16 +21,13 @@ TFT_eSPI tft = TFT_eSPI();
 unsigned long total = 0;
 unsigned long tn = 0;
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial);
 
   Serial.println(""); Serial.println("");
   Serial.println("TFT_eSPI library test!");
 
-  tft.begin();  
-//  tft.setRotation(2);/
   tft.init();
-
 
   tn = micros();
   tft.fillScreen(TFT_BLACK);
@@ -371,3 +368,4 @@ unsigned long testFilledRoundRects() {
   Written by Limor Fried/Ladyada for Adafruit Industries.
   MIT license, all text above must be included in any redistribution
  ****************************************************/
+

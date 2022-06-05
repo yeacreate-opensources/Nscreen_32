@@ -27,8 +27,6 @@
 // #define LOAD_FONT8  // Font 8. Large 75 pixel font needs ~3256 bytes in FLASH, only characters 1234567890:-.
 // #define LOAD_GFXFF  // FreeFonts. Include access to the 48 Adafruit_GFX free fonts FF1 to FF48 and custom fonts
 
-#define SMOOTH_FONT
+// #define SMOOTH_FONT
 
-
-
-#define SPI_FREQUENCY  40000000
+#define SPI_FREQUENCY  80000000
