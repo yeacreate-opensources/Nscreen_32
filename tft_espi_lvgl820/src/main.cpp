@@ -24,6 +24,11 @@ TFT_D7   14
 
 */
 
+/*
+ This test case is copied and modified from 
+ "lvgl\examples\arduino\LVGL_Arduino\LVGL_Arduino.ino"
+*/
+
 #include <lvgl.h>
 #include <TFT_eSPI.h>
 /*If you want to use the LVGL examples,
@@ -33,6 +38,7 @@ TFT_D7   14
 */
 
 #include "esp_freertos_hooks.h"
+
 #include "demos/lv_demos.h"
 #include "demos/widgets/lv_demo_widgets.h"
 #include "demos/benchmark/lv_demo_benchmark.h"
@@ -151,7 +157,13 @@ void setup()
     //indev_drv.read_cb = my_touchpad_read;
     //lv_indev_drv_register( &indev_drv );
    
-    esp_register_freertos_tick_hook(lv_tick_task);
+
+    //This is copied from  https://gitee.com/rillhu/esp32-lvgl-dev.git DEMOS
+    //And it fixed the drawing stop issue.
+    //To trigger lvgl task run, you need call lv_tick_inc from below hook.
+    esp_register_freertos_tick_hook(lv_tick_task); 
+
+
 #if 0
     /* Create simple label */
     lv_obj_t *label = lv_label_create( lv_scr_act() );
