@@ -18,7 +18,7 @@
                           //  platformio.ini, see notes in "Tools" folder.
 
 // Only ONE line below should be uncommented.  Add extra lines and files as needed.
-
+#define DISABLE_ALL_LIBRARY_WARNINGS
 //#include <User_Setup.h>           // Default setup is root library folder
 #include <User_Setups/7796s_esp32.h>
 

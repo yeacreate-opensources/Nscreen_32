@@ -4,7 +4,8 @@
 #include <TFT_eSPI.h>
 
 
-extern TFT_eSPI tft = TFT_eSPI(); //load tft service
+extern TFT_eSPI tft;
+ TFT_eSPI tft = TFT_eSPI(); //load tft service
 
 display_service::display_service() {}
 display_service::~display_service() {}
