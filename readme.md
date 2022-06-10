@@ -1,14 +1,17 @@
-# Before everything start, please power on your board, and check it if it works. #
+# Nscreen_32 development and update #
 
-## For developing, you can use ESP-idf or esp32-arduino. ##
+## For developing, you can esp32-arduino. ##
 ```
 We suggest you use platformIO it support both ESP-idf and arduino-esp32.
 Install the platformIO with this guide: https://platformio.org/platformio-ide
 ```
 
+**Before everything start, please power on your board, and check it if it works.**
 
 ## There are 3 demos here: ##
-1.tft_espi_graphicstest
+
+1. tft_espi_graphicstest
+
 ```
 Used for test the screen only.
 ```
@@ -23,11 +26,9 @@ Used for run the benchmark programme. And touch screen driver included.
 Used for the LVGL demo.And touch screen driver included.
 ```
 
+###  Note: Adapting 3 old demos
 
-
-###  Note 1: Adapting 3 old demos
-
-Above 3 demos are adapted for new `platform_packages: framework-arduinoespressif32` and new version toolchain.
+Original Nscreen_32 demos cannot used with latest Arduino framework. I adapt above 3 demos for new `platform_packages: framework-arduinoespressif32` and new version toolchain.
 
 Current toolchain is as below:
 
@@ -65,11 +66,15 @@ Dependency Graph
 
 
 
-### Note 2: update lvgl to version 8.2.0 and adapt the original demos
+## New demo
+
+4. tft_espi_lvgl820
+
+```
+update lvgl to version 8.2.0 and adapt the original demos
+```
 
 Current toolchain is as below:
-
-Adapt latest lvgl version and adapt original demos
 
 ```
 Verbose mode can be enabled via `-v, --verbose` option
@@ -103,5 +108,14 @@ Building in release mode
 
 ### TODO
 
-- [ ] Add GT911 support in new demos `tft_espi_lvgl820`
+- [x] Add GT911 support in new demos `tft_espi_lvgl820`
 
+
+
+### Run results
+
+<img src="C:\ZCodes\Git\Nscreen_32\readme.assets\1.jpg" style="zoom: 33%;" />
+
+<img src="C:\ZCodes\Git\Nscreen_32\readme.assets\2.jpg" style="zoom:33%;" />
+
+<img src="C:\ZCodes\Git\Nscreen_32\readme.assets\3.jpg" style="zoom:33%;" />
