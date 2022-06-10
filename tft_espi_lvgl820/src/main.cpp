@@ -23,11 +23,14 @@ TFT_D7   14
 ===============================================
 
 */
+#define TOUCH_CALIBRATION 0
+
 
 /*
  This test case is copied and modified from 
  "lvgl\examples\arduino\LVGL_Arduino\LVGL_Arduino.ino"
 */
+#include <Arduino.h>
 
 #include <lvgl.h>
 #include <TFT_eSPI.h>
@@ -36,6 +39,9 @@ TFT_D7   14
   and uncomment the following line.
 #include <lv_examples.h>
 */
+
+#include "config.h"
+#include "gt911.h"
 
 #include "esp_freertos_hooks.h"
 
@@ -54,6 +60,10 @@ static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[ screenWidth * 10 ];
 
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight); /* TFT instance */
+
+#if TOUCHPAD
+tp_service tp;  /*touchpad instance*/
+#endif
 
 #if LV_USE_LOG != 0
 /* Serial debugging */
@@ -78,32 +88,48 @@ void my_disp_flush( lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *colo
     lv_disp_flush_ready( disp );
 }
 
-#if 0
+#if TOUCHPAD
 /*Read the touchpad*/
 void my_touchpad_read( lv_indev_drv_t * indev_driver, lv_indev_data_t * data )
 {
-    uint16_t touchX, touchY;
-
-    bool touched = tft.getTouch( &touchX, &touchY, 600 );
-
-    if( !touched )
+    bool touched = tp.get_touch(50);
+    if (tp.get_xy.touch == 0)
     {
-        data->state = LV_INDEV_STATE_REL;
+        return;
+    }
+
+    if (tp.get_xy.x > screenHeight || tp.get_xy.y > screenWidth)
+    {
+#ifdef _DEBUG_
+        Serial.printf("[INFO][DISPLAY][TOUCH][ERR]Y or y outside of expected parameters.. X=%d, Y=%d\n", tp.get_xy.x, tp.get_xy.y);
+#endif
     }
     else
     {
-        data->state = LV_INDEV_STATE_PR;
 
-        /*Set the coordinates*/
-        data->point.x = touchX;
-        data->point.y = touchY;
+        data->state = (tp.get_xy.touch == true) ? LV_INDEV_STATE_PR : LV_INDEV_STATE_REL;
+        // data->state = LV_INDEV_STATE_PR;
 
-        Serial.print( "Data x " );
-        Serial.println( touchX );
-
-        Serial.print( "Data y " );
-        Serial.println( touchY );
+        /*Save the state and save the pressed coordinate*/
+        //if(data->state == LV_INDEV_STATE_PR) touchpad_get_xy(&last_x, &last_y);
+        if (data->state == LV_INDEV_STATE_PR)
+        {
+            //data->point.x = tp.get_xy.x;
+            //data->point.y = tp.get_xy.y;
+            /* ROTATION==1 */
+            data->point.x = tp.get_xy.y;
+            data->point.y = 319-tp.get_xy.x;
+#ifdef _DEBUG_
+            Serial.printf("[INFO][TP] X is %d \n", tp.get_xy.x);
+            Serial.printf("[INFO][TP] Y is %d \n", tp.get_xy.y);
+            Serial.printf("[INFO][TP] Touch status is %d \n", tp.get_xy.touch);
+            Serial.printf("[INFO][UPTIME] %ld \n", millis());
+            Serial.printf("[INFO][MEM] FREE memory %d \n", ESP.getFreeHeap());
+#endif
+        }
     }
+
+    return; /*Return `false` because we are not buffering and no more data to read*/
 }
 #endif
 
@@ -123,6 +149,10 @@ void setup()
     Serial.println( LVGL_Arduino );
     Serial.println( "I am LVGL_Arduino" );
 
+#if TOUCHPAD //touch initialization
+    tp.setup();
+#endif
+
     lv_init();
 
 #if LV_USE_LOG != 0
@@ -130,13 +160,18 @@ void setup()
 #endif
 
     tft.begin();          /* TFT init */
-    tft.setRotation( 3 ); /* Landscape orientation, flipped */
+    /* Landscape orientation, flipped 
+       0, 1, 2, 3 ==> 0°、90°、180°、270°   
+    */
+    tft.setRotation( ROTATION ); 
 
+#if TOUCH_CALIBRATION
     /*Set the touchscreen calibration data,
      the actual data for your display can be acquired using
      the Generic -> Touch_calibrate example from the TFT_eSPI library*/
     uint16_t calData[5] = { 275, 3620, 264, 3532, 1 };
-    //tft.setTouch( calData );
+    tft.setTouch( calData );
+#endif
 
     lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
 
@@ -150,17 +185,19 @@ void setup()
     disp_drv.draw_buf = &draw_buf;
     lv_disp_drv_register( &disp_drv );
 
+#if TOUCHPAD //touch_setup
     /*Initialize the (dummy) input device driver*/
-    //static lv_indev_drv_t indev_drv;
-    //lv_indev_drv_init( &indev_drv );
-    //indev_drv.type = LV_INDEV_TYPE_POINTER;
-    //indev_drv.read_cb = my_touchpad_read;
-    //lv_indev_drv_register( &indev_drv );
-   
+    static lv_indev_drv_t indev_drv;
+    lv_indev_drv_init( &indev_drv );
+    indev_drv.type = LV_INDEV_TYPE_POINTER;
+    indev_drv.read_cb = my_touchpad_read;
+    lv_indev_drv_register( &indev_drv ); 
+#endif
 
-    //This is copied from  https://gitee.com/rillhu/esp32-lvgl-dev.git DEMOS
-    //And it fixed the drawing stop issue.
-    //To trigger lvgl task run, you need call lv_tick_inc from below hook.
+    /* This is copied from  https://gitee.com/rillhu/esp32-lvgl-dev.git DEMOS
+       And it fixed the drawing stop issue.
+       To trigger lvgl task run, you need call lv_tick_inc from below hook.
+    */
     esp_register_freertos_tick_hook(lv_tick_task); 
 
 
@@ -176,8 +213,8 @@ void setup()
    */
 
     // uncomment one of these demos
-    // lv_demo_widgets();            // OK
-     lv_demo_benchmark();          // OK
+     lv_demo_widgets();            // OK
+    // lv_demo_benchmark();          // OK
     // lv_demo_keypad_encoder();     // works, but I haven't an encoder
     // lv_demo_music();              // OK
     // lv_demo_stress();             // seems to be OK
