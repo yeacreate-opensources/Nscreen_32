@@ -114,8 +114,8 @@ Building in release mode
 
 ### Run results
 
-<img src="C:\ZCodes\Git\Nscreen_32\readme.assets\1.jpg" style="zoom: 33%;" />
+![](https://rillhudev.coding.net/p/blogres/d/blogres/git/tree/master/tft_espi_lvgl820-1.jpg)
 
-<img src="C:\ZCodes\Git\Nscreen_32\readme.assets\2.jpg" style="zoom:33%;" />
+![](https://rillhudev.coding.net/p/blogres/d/blogres/git/tree/master/tft_espi_lvgl820-2.jpg)
 
-<img src="C:\ZCodes\Git\Nscreen_32\readme.assets\3.jpg" style="zoom:33%;" />
+![](https://rillhudev.coding.net/p/blogres/d/blogres/git/tree/master/tft_espi_lvgl820-3.jpg)
