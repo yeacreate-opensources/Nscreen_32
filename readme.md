@@ -114,6 +114,6 @@ Building in release mode
 
 ### Run results
 
-![](https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-1.jpg)
-![](https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-2.jpg)
-![](https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-3.jpg)
+<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-1.jpg" style="zoom:33%;" />
+<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-2.jpg" style="zoom:33%;" />
+<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-3.jpg" style="zoom:33%;" />
