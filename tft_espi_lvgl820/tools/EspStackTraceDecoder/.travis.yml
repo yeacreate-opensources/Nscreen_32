@@ -1,0 +1,17 @@
+language: java
+jdk:
+- oraclejdk8
+install: ant
+notifications:
+  on_success: never
+  on_failure: always
+
+deploy:
+  provider: releases
+  api_key:
+    secure: bd5qiGc/WtBkX9bIe4e9gKpMWq2ovxhEjgFhRQGEONw0+dJ/obYQRiP2VTzxVTY1CjPChJjKwyADUEqUQOSGTmUKK1mWZ+C4wi3Kb8cd3L4FEFO0ZzawbUnpVDYTW36lBtvqOZmagd8UMxk7CJKBjZSACiPfnzmT6k8WZtvEGVq2P/pAAD8eMpl1s/k6hFL37z+ZZqiEiXvQ/QfpLnkdC5y4Bd4Er5A0oX5h0ogndTinKmOv0em2AEbzAqMh82T2V2KRHzvCI97p6MWn9ybEg8CIMyI+OpPHs6lwJASgv0LfHC5+UD6XdOrlwrGzn9rXqGXZUtZRxL7OkgfVAqH3xl9Y3AccjLAF9fnw++2USHF+hRBm6B7P1WLtkW8By50mXxlqXZNkkvK/JK2Dt3fyawD1kcMuojfcm7FnnpyvY6eODoWlOw/cPTc+08LETtDbN1D1YpDhO963h2jqQjLLqrQ7RWKJeANf+x4WEhb1pr7VcHfpFQ7vBym2WCVf8pJVdSQ002Yhk3CYqw0kXzqWEY8xq1BVrwSk5S6jVpHfzJdyMs3aD/Bgav+wuN5frc+MTNaxj9ZudMs3Dw/nxaICTd9cW9+QqXL0NGJT0jgZ2urxbJZ/40Q+UKu3Jd/TRbHt85W2ul1G3sl9IRkVN6cUd8XfldLQrnj8gMzQ6fgOBrM=
+  file: build/release/EspStackTraceDecoder.jar
+  skip_cleanup: true
+  on:
+    repo: littleyoda/EspStackTraceDecoder
+    tags: off

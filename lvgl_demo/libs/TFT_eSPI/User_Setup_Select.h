@@ -22,25 +22,25 @@
 //#include <User_Setup.h>           // Default setup is root library folder
 #include <User_Setups/7796s_esp32.h>
 
-//#include <User_Setups/Setup1_ILI9341.h>  // Setup file configured for my ILI9341
-//#include <User_Setups/Setup2_ST7735.h>   // Setup file configured for my ST7735
-//#include <User_Setups/Setup3_ILI9163.h>  // Setup file configured for my ILI9163
-//#include <User_Setups/Setup4_S6D02A1.h>  // Setup file configured for my S6D02A1
-//#include <User_Setups/Setup5_RPi_ILI9486.h>        // Setup file configured for my stock RPi TFT
-//#include <User_Setups/Setup6_RPi_Wr_ILI9486.h>     // Setup file configured for my modified RPi TFT
-//#include <User_Setups/Setup7_ST7735_128x128.h>     // Setup file configured for my ST7735 128x128 display
-//#include <User_Setups/Setup8_ILI9163_128x128.h>    // Setup file configured for my ILI9163 128x128 display
-//#include <User_Setups/Setup9_ST7735_Overlap.h>     // Setup file configured for my ST7735
-//#include <User_Setups/Setup10_RPi_touch_ILI9486.h> // Setup file configured for ESP8266 and RPi TFT with touch
+//#include <User_Setups/Setup1_ILI9341.h>  // Setup file for ESP8266 configured for my ILI9341
+//#include <User_Setups/Setup2_ST7735.h>   // Setup file for ESP8266 configured for my ST7735
+//#include <User_Setups/Setup3_ILI9163.h>  // Setup file for ESP8266 configured for my ILI9163
+//#include <User_Setups/Setup4_S6D02A1.h>  // Setup file for ESP8266 configured for my S6D02A1
+//#include <User_Setups/Setup5_RPi_ILI9486.h>        // Setup file for ESP8266 configured for my stock RPi TFT
+//#include <User_Setups/Setup6_RPi_Wr_ILI9486.h>     // Setup file for ESP8266 configured for my modified RPi TFT
+//#include <User_Setups/Setup7_ST7735_128x128.h>     // Setup file for ESP8266 configured for my ST7735 128x128 display
+//#include <User_Setups/Setup8_ILI9163_128x128.h>    // Setup file for ESP8266 configured for my ILI9163 128x128 display
+//#include <User_Setups/Setup9_ST7735_Overlap.h>     // Setup file for ESP8266 configured for my ST7735
+//#include <User_Setups/Setup10_RPi_touch_ILI9486.h> // Setup file for ESP8266 configured for ESP8266 and RPi TFT with touch
 
 //#include <User_Setups/Setup11_RPi_touch_ILI9486.h> // Setup file configured for ESP32 and RPi TFT with touch
-//#include <User_Setups/Setup12_M5Stack.h>           // Setup file for the ESP32 based M5Stack
+//#include <User_Setups/Setup12_M5Stack_Basic_Core.h>// Setup file for the ESP32 based M5Stack (Basic Core only)
 //#include <User_Setups/Setup13_ILI9481_Parallel.h>  // Setup file for the ESP32 with parallel bus TFT
 //#include <User_Setups/Setup14_ILI9341_Parallel.h>  // Setup file for the ESP32 with parallel bus TFT
-//#include <User_Setups/Setup15_HX8357D.h>           // Setup file configured for HX8357D (untested)
+//#include <User_Setups/Setup15_HX8357D.h>           // Setup file for ESP8266 configured for HX8357D
 //#include <User_Setups/Setup16_ILI9488_Parallel.h>  // Setup file for the ESP32 with parallel bus TFT
-//#include <User_Setups/Setup17_ePaper.h>            // Setup file for any Waveshare ePaper display
-//#include <User_Setups/Setup18_ST7789.h>            // Setup file configured for ST7789
+//#include <User_Setups/Setup17_ePaper.h>            // Setup file for ESP8266 and any Waveshare ePaper display
+//#include <User_Setups/Setup18_ST7789.h>            // Setup file for ESP8266 configured for ST7789
 
 //#include <User_Setups/Setup19_RM68140_Parallel.h>	 // Setup file configured for RM68140 with parallel bus
 
@@ -50,7 +50,7 @@
 //#include <User_Setups/Setup22_TTGO_T4.h>           // Setup file for ESP32 and TTGO T4 version 1.2
 //#include <User_Setups/Setup22_TTGO_T4_v1.3.h>      // Setup file for ESP32 and TTGO T4 version 1.3
 //#include <User_Setups/Setup23_TTGO_TM.h>           // Setup file for ESP32 and TTGO TM ST7789 SPI bus TFT
-//#include <User_Setups/Setup24_ST7789.h>            // Setup file configured for ST7789 240 x 240
+//#include <User_Setups/Setup24_ST7789.h>            // Setup file for DSTIKE/ESP32/ESP8266 configured for ST7789 240 x 240
 //#include <User_Setups/Setup25_TTGO_T_Display.h>    // Setup file for ESP32 and TTGO T-Display ST7789V SPI bus TFT
 //#include <User_Setups/Setup26_TTGO_T_Wristband.h>  // Setup file for ESP32 and TTGO T-Wristband ST7735 SPI bus TFT
 
@@ -67,17 +67,51 @@
 //#include <User_Setups/Setup34_ILI9481_Parallel_STM32.h> // Setup for Nucleo board and parallel display
 //#include <User_Setups/Setup35_ILI9341_STM32_Port_Bus.h> // Setup for STM32 port A parallel display
 
-//#include <User_Setups/Setup36_RPi_touch_ILI9341.h>      // Setup file configured for ESP32 and RPi TFT with touch
+//#include <User_Setups/Setup36_RPi_touch_ST7796.h>      // Setup file configured for ESP32 and RPi ST7796 TFT with touch
 
-//#include <User_Setups/Setup43_ST7735.h>            // Setup file configured for my ST7735S 80x160
+//#include <User_Setups/Setup43_ST7735.h>            // Setup file for ESP8266 & ESP32 configured for my ST7735S 80x160
 //#include <User_Setups/Setup44_TTGO_CameraPlus.h>   // Setup file for ESP32 and TTGO T-CameraPlus ST7789 SPI bus TFT    240x240
 //#include <User_Setups/Setup45_TTGO_T_Watch.h>      // Setup file for ESP32 and TTGO T-Watch ST7789 SPI bus TFT  240x240
+//#include <User_Setups/Setup46_GC9A01_ESP32.h>      // Setup file for ESP32 and GC9A01 SPI bus TFT  240x240
+
+//#include <User_Setups/Setup47_ST7735.h>            // Setup file for ESP32 configured for ST7735 128 x 128 animated eyes
 
 //#include <User_Setups/Setup50_SSD1963_Parallel.h>  // Setup file for ESP32 and SSD1963 TFT display
 
+//#include <User_Setups/Setup51_LilyPi_ILI9481.h>    // Setup file for LilyGo LilyPi with ILI9481 display
+//#include <User_Setups/Setup52_LilyPi_ST7796.h>     // Setup file for LilyGo LilyPi with ST7796 display
+
+//#include <User_Setups/Setup60_RP2040_ILI9341.h>    // Setup file for RP2040 with SPI ILI9341
+//#include <User_Setups/Setup61_RP2040_ILI9341_PIO_SPI.h>    // Setup file for RP2040 with PIO SPI ILI9341
+//#include <User_Setups/Setup62_RP2040_Nano_Connect_ILI9341.h>    // Setup file for RP2040 with SPI ILI9341
+
+//#include <User_Setups/Setup70_ESP32_S2_ILI9341.h>   // Setup file for ESP32 S2 with SPI ILI9341
+//#include <User_Setups/Setup70b_ESP32_S3_ILI9341.h>  // Setup file for ESP32 S3 with SPI ILI9341
+//#include <User_Setups/Setup70c_ESP32_C3_ILI9341.h>  // Setup file for ESP32 C3 with SPI ILI9341
+
+//#include <User_Setups/Setup71_ESP32_S2_ST7789.h>       // Setup file for ESP32 S2 with ST7789
+//#include <User_Setups/Setup72_ESP32_ST7789_172x320.h>  // Setup file for ESP32 with ST7789 1.47" 172x320
+
+//#include <User_Setups/Setup100_RP2040_ILI9488_parallel.h> // Setup file for Pico/RP2040 with 8 bit parallel ILI9488
+//#include <User_Setups/Setup101_RP2040_ILI9481_parallel.h> // Setup file for Pico/RP2040 with 8 bit parallel ILI9481
+//#include <User_Setups/Setup102_RP2040_ILI9341_parallel.h> // Setup file for Pico/RP2040 with 8 bit parallel ILI9341
+//#include <User_Setups/Setup103_RP2040_ILI9486_parallel.h> // Setup file for Pico/RP2040 with 8 bit parallel ILI9486
+//#include <User_Setups/Setup104_RP2040_ST7796_parallel.h>  // Setup file for Pico/RP2040 with 8 bit parallel ST7796
+
 //#include <User_Setups/Setup135_ST7789.h>           // Setup file for ESP8266 and ST7789 135 x 240 TFT
 
-//#include <User_Setups/SetupX_Template.h>
+//#include <User_Setups/Setup136_LilyGo_TTV.h>       // Setup file for ESP32 and Lilygo TTV ST7789 SPI bus TFT  135x240
+//#include <User_Setups/Setup137_LilyGo_TDisplay_RP2040.h>  // Setup file for Lilygo T-Display RP2040 (ST7789 on SPI bus with 135x240 TFT)
+
+//#include <User_Setups/Setup200_GC9A01.h>           // Setup file for ESP32 and GC9A01 240 x 240 TFT
+
+//#include <User_Setups/Setup201_WT32_SC01.h>        // Setup file for ESP32 based WT32_SC01 from Seeed
+
+//#include <User_Setups/Setup202_SSD1351_128.h>      // Setup file for ESP32/ESP8266 based SSD1351 128x128 1.5inch OLED display
+
+//#include <User_Setups/Setup203_ST7789.h>     // Setup file for ESP32/ESP8266 based ST7789 240X280 1.69inch TFT 
+
+//#include <User_Setups/SetupX_Template.h>     // Template file for a setup
 
 
 #endif // USER_SETUP_LOADED
@@ -114,8 +148,15 @@
   #endif
 #endif
 
+// Invoke 18 bit colour for selected displays
+#if !defined (RPI_DISPLAY_TYPE) && !defined (TFT_PARALLEL_8_BIT) && !defined (ESP32_PARALLEL)
+  #if defined (ILI9481_DRIVER) || defined (ILI9486_DRIVER) || defined (ILI9488_DRIVER)
+    #define SPI_18BIT_DRIVER
+  #endif
+#endif
+
 // Load the right driver definition - do not tinker here !
-#if   defined (ILI9341_DRIVER)
+#if   defined (ILI9341_DRIVER) || defined(ILI9341_2_DRIVER) || defined (ILI9342_DRIVER)
      #include <TFT_Drivers/ILI9341_Defines.h>
      #define  TFT_DRIVER 0x9341
 #elif defined (ST7735_DRIVER)
@@ -157,6 +198,9 @@
 #elif defined (RM68140_DRIVER)
      #include "TFT_Drivers/RM68140_Defines.h"
      #define  TFT_DRIVER 0x6814
+#elif defined (SSD1351_DRIVER)
+     #include "TFT_Drivers/SSD1351_Defines.h"
+     #define  TFT_DRIVER 0x1351
 #elif defined (SSD1963_480_DRIVER)
      #include "TFT_Drivers/SSD1963_Defines.h"
      #define  TFT_DRIVER 0x1963
@@ -172,6 +216,19 @@
 #elif defined (GC9A01_DRIVER)
      #include "TFT_Drivers/GC9A01_Defines.h"
      #define  TFT_DRIVER 0x9A01
+#elif defined (ILI9225_DRIVER)
+     #include "TFT_Drivers/ILI9225_Defines.h"
+     #define  TFT_DRIVER 0x9225
+#elif defined (RM68120_DRIVER)
+     #include "TFT_Drivers/RM68120_Defines.h"
+     #define  TFT_DRIVER 0x6812
+#elif defined (HX8357B_DRIVER)
+     #include "TFT_Drivers/HX8357B_Defines.h"
+     #define  TFT_DRIVER 0x835B
+#elif defined (HX8357C_DRIVER)
+     #include "TFT_Drivers/HX8357C_Defines.h"
+     #define  TFT_DRIVER 0x835C
+
                               // <<<<<<<<<<<<<<<<<<<<<<<< ADD NEW DRIVER HERE
                               // XYZZY_init.h and XYZZY_rotation.h must also be added in TFT_eSPI.cpp
 #elif defined (XYZZY_DRIVER)
@@ -180,7 +237,6 @@
 #else
      #define  TFT_DRIVER 0x0000
 #endif
-
 
 // These are the pins for ESP8266 boards
 //      Name   GPIO    NodeMCU      Function
