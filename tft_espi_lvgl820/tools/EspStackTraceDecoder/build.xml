@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="jar" name="EspStackTraceDecoder">
+   <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="build/release/EspStackTraceDecoder.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="EspStackTraceDecoder"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="build/classes"/>
+        </jar>
+    </target>
+    
+    <target name="test">
+    </target>
+    
+</project>
