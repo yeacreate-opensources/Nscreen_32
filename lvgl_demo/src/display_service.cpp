@@ -4,7 +4,13 @@
 #include <lvgl.h>
 #include <TFT_eSPI.h>
 #include "gt911.h"
-#include "example/lv_demo_widgets.h"
+#include "esp_freertos_hooks.h"
+#include "demos/lv_demos.h"
+#include "demos/widgets/lv_demo_widgets.h"
+#include "demos/benchmark/lv_demo_benchmark.h"
+#include "demos/stress/lv_demo_stress.h"
+#include "demos/music/lv_demo_music.h"
+#include "demos/keypad_encoder/lv_demo_keypad_encoder.h"
 
 
 extern TFT_eSPI tft = TFT_eSPI(); //load tft service
@@ -13,8 +19,8 @@ extern tp_service tp;             //load tp service
 display_service::display_service() {}
 display_service::~display_service() {}
 
-
-static lv_disp_buf_t disp_buf;
+static void lv_tick_task();
+static lv_disp_draw_buf_t disp_buf;
 static lv_color_t buf1[DISP_BUF_SIZE];
 
 #if (BUF_NUM== 2)
@@ -25,60 +31,63 @@ static lv_color_t buf2[DISP_BUF_SIZE];
 #ifdef TOUCHPAD
 void ICACHE_FLASH_ATTR display_service::touch_setup()
 {
-  /*Initialize the touch pad*/
-  lv_indev_drv_t indev_drv;
-  lv_indev_drv_init(&indev_drv);
+
+  tp.setup();
+  static lv_indev_drv_t indev_drv;
+  lv_indev_drv_init( &indev_drv );
   indev_drv.type = LV_INDEV_TYPE_POINTER;
   indev_drv.read_cb = my_touchpad_read;
-  lv_indev_drv_register(&indev_drv);
-#ifdef _DEBUG_
-  Serial.print(F("[INFO] Touch setup finished! \n"));
-#endif
+  lv_indev_drv_register( &indev_drv ); 
 }
 #endif
 
-
+static void lv_tick_task()
+{   
+   lv_tick_inc(portTICK_PERIOD_MS);
+}
 void ICACHE_FLASH_ATTR display_service::lv_setup()
 {
   lv_init();
+
   tft.begin();               /* TFT init */
   tft.setRotation(ROTATION); /* Landscape orientation */
 #if (BUF_NUM == 1)
-  lv_disp_buf_init(&disp_buf, buf1, NULL, DISP_BUF_SIZE);
+  // lv_disp_buf_init(&disp_buf, buf1, NULL, DISP_BUF_SIZE);
+  lv_disp_draw_buf_init( &disp_buf, buf1, NULL, DISP_BUF_SIZE );
 #elif (BUF_NUM == 2)
   lv_disp_buf_init(&disp_buf, buf1, buf2, DISP_BUF_SIZE);
 #endif
 
   /*Initialize the display*/
-  lv_disp_drv_t disp_drv;
+  static lv_disp_drv_t disp_drv;
   lv_disp_drv_init(&disp_drv);
   disp_drv.hor_res = LV_HOR_RES_MAX;
   disp_drv.ver_res = LV_VER_RES_MAX;
   disp_drv.flush_cb = my_disp_flush;
-  disp_drv.buffer = &disp_buf;
+  disp_drv.full_refresh = 0;
+  disp_drv.draw_buf = &disp_buf;
   lv_disp_drv_register(&disp_drv);
-
-  lv_obj_t *scr = lv_cont_create(NULL, NULL);
-  lv_disp_load_scr(scr);
-
+   
   lv_demo_widgets();
-
-#ifdef _DEBUG_
-  Serial.print(F("[INFO] Display GUI setup finished! \n"));
-#endif
+// #ifdef _DEBUG_
+//   Serial.print(F("[INFO] Display GUI setup finished! \n"));
+// #endif
 }
 
 void ICACHE_FLASH_ATTR display_service::setup()
 {
-  tft.init(); //setup tft servcie
-  tft.fillScreen(TFT_WHITE);
+
   lv_setup();
 
+  esp_register_freertos_tick_hook(lv_tick_task);
+
+#ifdef _DEBUG_
+  Serial.print(F("[INFO] Display GUI setup finished! \n"));
+#endif
 #ifdef TOUCHPAD
   touch_setup();
 #endif
- 
-  lv_main();
+  // lv_main();
 
 } // end display service setup
 
@@ -86,13 +95,13 @@ void ICACHE_FLASH_ATTR display_service::setup()
 
 /* =========================== iram functions=========================== */
 #ifdef TOUCHPAD
-bool IRAM_ATTR display_service::my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
+void IRAM_ATTR display_service::my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
 {
 
      bool touched = tp.get_touch(50);
     if (tp.get_xy.touch == 0)
     {
-        return false;
+        return ;
     }
 
     if (tp.get_xy.x > LV_HOR_RES_MAX || tp.get_xy.y > LV_VER_RES_MAX)
@@ -123,7 +132,7 @@ bool IRAM_ATTR display_service::my_touchpad_read(lv_indev_drv_t *indev_driver, l
         }
     }
 
-    return false; /*Return `false` because we are not buffering and no more data to read*/
+    return ; /*Return `false` because we are not buffering and no more data to read*/
 }
 #endif
 
@@ -142,7 +151,11 @@ void IRAM_ATTR display_service::lv_main()
 
 void IRAM_ATTR display_service::loop()
 {
-  lv_task_handler(); /* let the GUI do its work */
+
+  lv_timer_handler(); /* let the GUI do its work */
+    delay( 5 );
+  // lv_task_handler(); /* let the GUI do its work */
+    // delay( 5 );
 } //end loop
 
 /* Display flushing */

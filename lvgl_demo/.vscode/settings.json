@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.html": "html",
+    "*.njk": "nunjucks",
+    "*.njk*": "html",
+    "lvgl.h": "c"
+  }
+}

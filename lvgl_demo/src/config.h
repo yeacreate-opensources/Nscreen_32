@@ -23,7 +23,7 @@
 
 
 //------------------------start display select
-#define BUF_SIZE 100
+#define BUF_SIZE 80
 #define DISP_BUF_SIZE (LV_HOR_RES_MAX * BUF_SIZE)
 #define BUF_NUM 1
 //------------------------end display select

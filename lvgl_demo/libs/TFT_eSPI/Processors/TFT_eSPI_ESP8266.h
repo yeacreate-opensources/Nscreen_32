@@ -115,9 +115,9 @@
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// Macros to write commands/pixel colour data to a SPI ILI948x TFT
+// Macros to write commands/pixel colour data to an ILI9488 TFT
 ////////////////////////////////////////////////////////////////////////////////////////
-#if  defined (SPI_18BIT_DRIVER) // SPI 18 bit colour
+#if  defined (ILI9488_DRIVER) // 16 bit colour converted to 3 bytes for 18 bit RGB
 
   // Write 8 bits to TFT
   #define tft_Write_8(C)   spi.transfer(C)
@@ -191,11 +191,6 @@
   SPI1CMD |= SPIBUSY; \
   while(SPI1CMD & SPIBUSY) {;}
 
-  #define tft_Write_16N(C) \
-  SPI1U1 = (15 << SPILMOSI) | (15 << SPILMISO); \
-  SPI1W0 = ((C)<<8 | (C)>>8); \
-  SPI1CMD |= SPIBUSY
-
   #define tft_Write_16S(C) \
   SPI1U1 = (15 << SPILMOSI) | (15 << SPILMISO); \
   SPI1W0 = C; \
@@ -220,10 +215,6 @@
   SPI1CMD |= SPIBUSY; \
   while(SPI1CMD & SPIBUSY) {;}
 
-#endif
-
-#ifndef tft_Write_16N
-  #define tft_Write_16N tft_Write_16
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////

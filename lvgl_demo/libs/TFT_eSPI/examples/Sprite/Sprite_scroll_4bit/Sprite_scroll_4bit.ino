@@ -41,7 +41,7 @@ void setup() {
   tft.init();
   tft.fillScreen(TFT_BLACK);
 
-  // Populate the palette table, table must have 16 entries
+  // Populate the palette table, table must have 16 entires
   palette[0]  = TFT_BLACK;
   palette[1]  = TFT_ORANGE;
   palette[2]  = TFT_DARKGREEN;

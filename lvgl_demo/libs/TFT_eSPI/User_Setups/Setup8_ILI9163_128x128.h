@@ -1,5 +1,4 @@
 // See SetupX_Template.h for all options available
-#define USER_SETUP_ID 8
 
 #define ILI9163_DRIVER
 

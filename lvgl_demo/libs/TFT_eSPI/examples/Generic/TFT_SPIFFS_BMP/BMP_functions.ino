@@ -1,4 +1,4 @@
-// Bodmer's BMP image rendering function
+// Bodmers BMP image rendering function
 
 void drawBmp(const char *filename, int16_t x, int16_t y) {
 

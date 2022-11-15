@@ -63,7 +63,7 @@ void ICACHE_FLASH_ATTR tp_service::setup()
   Serial.println(I2C_SPEED);
 #endif
 
-  Wire.begin(TP_SDA, TP_SCL, (uint32_t)400000);
+  Wire.begin(TP_SDA, TP_SCL, I2C_SPEED);
 #ifdef _TP_DEBUG_
   Serial.print("[INFO][TP] I2C wire begin \n");
 #endif

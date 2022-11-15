@@ -1,5 +1,4 @@
 // See SetupX_Template.h for all options available
-#define USER_SETUP_ID 6
 
 #define RPI_ILI9486_DRIVER // 20MHz maximum SPI
 

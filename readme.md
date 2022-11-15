@@ -1,119 +1,24 @@
-# Nscreen_32 development and update #
+# Before everything start, please power on your board, and check it if it works. #
 
-## For developing, you can esp32-arduino. ##
+## For developing, you can use ESP-idf or esp32-arduino. ##
 ```
 We suggest you use platformIO it support both ESP-idf and arduino-esp32.
 Install the platformIO with this guide: https://platformio.org/platformio-ide
+
+or
+
+Install arduino-esp32 for Arduino-IDE.
+Install guide is here:
+https://github.com/espressif/arduino-esp32#installation-instructions
 ```
 
-**Before everything start, please power on your board, and check it if it works.**
 
-## There are 3 demos here: ##
-
-1. tft_espi_graphicstest
-
+## There are 2 demos here: ##
+1.tft_espi_graphicstest
 ```
 Used for test the screen only.
 ```
-
-2. lvgl_benchmark
-```
-Used for run the benchmark programme. And touch screen driver included.
-```
-
-3. lvgl_demo
+2. lvgl_demo(LVGL 8.3)
 ```
 Used for the LVGL demo.And touch screen driver included.
 ```
-
-###  Note: Adapting 3 old demos
-
-Original Nscreen_32 demos cannot used with latest Arduino framework. I adapt above 3 demos for new `platform_packages: framework-arduinoespressif32` and new version toolchain.
-
-Current toolchain is as below:
-
-```
-PACKAGES: 
- - framework-arduinoespressif32 @ 3.20003.0 (2.0.3) 
- - tool-esptoolpy @ 1.30300.0 (3.3.0) 
- - tool-openocd-esp32 @ 2.1100.20220411 (11.0) 
- - toolchain-xtensa-esp32 @ 8.4.0+2021r2-patch3
-```
-
-platformio.ini
-
-```
-platform_packages =
-  ; use a special branch
-  ; framework-arduinoespressif32 @ https://github.com/espressif/arduino-esp32.git#idf-release/v4.0
-  framework-arduinoespressif32
-```
-
-Current libraries version:
-
-```
-Dependency Graph
-|-- lv_arduino @ 3.0.1
-|-- TFT_eSPI @ 2.4.61
-|   |-- SPIFFS @ 2.0.0
-|   |   |-- FS @ 2.0.0
-|   |-- FS @ 2.0.0
-|   |-- LittleFS @ 2.0.0
-|   |   |-- FS @ 2.0.0
-|   |-- SPI @ 2.0.0
-|-- Wire @ 2.0.0
-```
-
-
-
-## New demo
-
-4. tft_espi_lvgl820
-
-```
-update lvgl to version 8.2.0 and adapt the original demos
-```
-
-Current toolchain is as below:
-
-```
-Verbose mode can be enabled via `-v, --verbose` option
-CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/nscreen-32.html
-PLATFORM: Espressif 32 (4.4.0) > YeaCreate NSCREEN-32
-HARDWARE: ESP32 240MHz, 320KB RAM, 16MB Flash
-DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
-PACKAGES: 
- - framework-arduinoespressif32 @ 3.20003.0 (2.0.3) 
- - tool-esptoolpy @ 1.30300.0 (3.3.0) 
- - tool-openocd-esp32 @ 2.1100.20220411 (11.0) 
- - toolchain-xtensa-esp32 @ 8.4.0+2021r2-patch3
-```
-
-Current libraries version:
-
-```
-Dependency Graph
-|-- lvgl @ 8.2.0
-|-- TFT_eSPI @ 2.4.61
-|   |-- SPIFFS @ 2.0.0
-|   |   |-- FS @ 2.0.0
-|   |-- FS @ 2.0.0
-|   |-- LittleFS @ 2.0.0
-|   |   |-- FS @ 2.0.0
-|   |-- SPI @ 2.0.0
-Building in release mode
-```
-
-
-
-### TODO
-
-- [x] Add GT911 support in new demos `tft_espi_lvgl820`
-
-
-
-### Run results
-
-<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-1.jpg" style="zoom:33%;" />
-<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-2.jpg" style="zoom:33%;" />
-<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-3.jpg" style="zoom:33%;" />
