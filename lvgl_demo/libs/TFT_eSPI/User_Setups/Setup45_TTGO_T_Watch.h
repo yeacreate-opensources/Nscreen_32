@@ -1,5 +1,3 @@
-#define USER_SETUP_ID 45
-
 #define ST7789_DRIVER
 
 #define TFT_WIDTH  240

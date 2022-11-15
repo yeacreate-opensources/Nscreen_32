@@ -1,5 +1,4 @@
 /*
-
 480x320 4.0 inch ST7796 parallel display project with GT911 touch screen
 connectons：
 ===============================================
@@ -26,9 +25,7 @@ SDA:D21[GPIO21]
 INT:D5
 RST:D23
 --------------------------
-
 ===============================================
-
 */
 
 #include <Arduino.h>

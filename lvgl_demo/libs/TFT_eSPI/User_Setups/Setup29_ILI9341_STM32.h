@@ -2,7 +2,6 @@
         ///////////////////////////////////////////////////
         //  Setup for STM32 Nucleo and ILI9341 display   //
         ///////////////////////////////////////////////////
-#define USER_SETUP_ID 29
 
 // Last update by Bodmer: 28/11/19
 

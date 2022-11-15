@@ -134,7 +134,7 @@ void computeCA() {
   }
 }
 
-// Check the Moore neighbourhood
+// Check the Moore neighborhood
 int getNumberOfNeighbors(int x, int y) {
   return grid[x - 1][y] + grid[x - 1][y - 1] + grid[x][y - 1] + grid[x + 1][y - 1] + grid[x + 1][y] + grid[x + 1][y + 1] + grid[x][y + 1] + grid[x - 1][y + 1];
 }

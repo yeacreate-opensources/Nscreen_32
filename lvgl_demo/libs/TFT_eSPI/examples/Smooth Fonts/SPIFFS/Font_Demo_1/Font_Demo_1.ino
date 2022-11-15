@@ -37,7 +37,7 @@
 #define AA_FONT_SMALL "NotoSansBold15"
 #define AA_FONT_LARGE "NotoSansBold36"
 
-// Font files are stored in SPIFFS, so load the library
+// Font files are stored in SPIFFS, so load the linbrary
 #include <FS.h>
 
 #include <SPI.h>
@@ -141,15 +141,13 @@ void loop() {
   for (int i = 0; i <= 20; i++)
   {
     tft.setCursor(50, 50);
-    tft.setTextColor(TFT_GREEN, TFT_BLACK); // TFT_BLACK is used for anti-aliasing only
-                                            // By default background fill is off
     tft.print("      "); // Overprinting old number with spaces DOES NOT WORK!
+    tft.setTextColor(TFT_GREEN, TFT_BLACK);
     tft.setCursor(50, 50);
     tft.print(i / 10.0, 1);
 
-    // Adding a parameter "true" to the setTextColor() function fills character background
-    // This extra parameter is only for smooth fonts!
-    tft.setTextColor(TFT_GREEN, TFT_BLACK, true);
+    tft.fillRect (50, 90, 60, 40, TFT_BLACK); // Overprint with a filled rectangle
+    tft.setTextColor(TFT_GREEN, TFT_BLACK);
     tft.setCursor(50, 90);
     tft.print(i / 10.0, 1);
     

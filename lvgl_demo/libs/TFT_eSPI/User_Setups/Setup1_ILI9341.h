@@ -1,5 +1,4 @@
 // See SetupX_Template.h for all options available
-#define USER_SETUP_ID 1
 
 #define ILI9341_DRIVER
 
